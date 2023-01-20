@@ -20,7 +20,7 @@ jobs:
 
     - name: Build website
       run: |
-        npm run ci
+        npm ci
         npm run run
 
     - name: Deploy to GitHub Pages
