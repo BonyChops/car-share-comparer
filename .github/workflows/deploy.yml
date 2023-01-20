@@ -24,11 +24,11 @@ jobs:
         npm run build
 
     - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          # Upload entire repository
-          path: 'build'
+      uses: actions/upload-pages-artifact@v1
+      with:
+        # Upload entire repository
+        path: 'build'
 
     - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@main
+      id: deployment
+      uses: actions/deploy-pages@main
