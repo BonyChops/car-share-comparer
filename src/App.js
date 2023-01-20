@@ -81,7 +81,9 @@ function App() {
                 .map(vv => (
                   v[1](({ ...config, [config.showGraph]: vv })).total
                 ))),
-              backgroundColor: v[1](config).backgroundColor
+              backgroundColor: v[1](config).backgroundColor,
+              borderColor: v[1](config).backgroundColor,
+              pointStyle: false
             }))
           }} />
       }
