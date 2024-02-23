@@ -16,25 +16,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Use Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
-    - name: Build website
-      run: |
-        npm ci
-        npm run build
+      - name: Build website
+        run: |
+          npm ci
+          npm run build
 
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v1
-      with:
-        # Upload entire repository
-        path: 'build'
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          # Upload entire repository
+          path: "build"
 
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@main
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@main
