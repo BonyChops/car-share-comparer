@@ -57,7 +57,7 @@ function App() {
       ],
     ])
   );
-  console.log(config);
+  const [graphMax, setGraphMax] = useState(0);
 
   return (
     <div className="App">
@@ -94,12 +94,13 @@ function App() {
       <h2>比較グラフ</h2>
       <select
         value={config.showGraph}
-        onChange={(e) =>
+        onChange={(e) => {
           setConfig((prevState, props) => ({
             ...prevState,
             showGraph: e.target.value,
-          }))
-        }
+          }));
+          setGraphMax(options[e.target.value].max);
+        }}
       >
         <option value="none">なし</option>
         {Object.keys(options).map((v) => (
@@ -107,20 +108,35 @@ function App() {
         ))}
       </select>
       {config.showGraph && config.showGraph !== "none" && (
+        <div style={{ display: "flex" }}>
+          範囲:{" "}
+          <input
+            type="range"
+            width={100}
+            step={options[config.showGraph].steps ?? 1}
+            value={graphMax}
+            onChange={(e) => setGraphMax(e.target.value)}
+            min={options[config.showGraph].min}
+            max={options[config.showGraph].max}
+          />
+          {graphMax}分
+        </div>
+      )}
+      {config.showGraph && config.showGraph !== "none" && (
         <Line
           config={{
             responsive: true,
             plugins: {
               title: {
                 display: true,
-                text: "グラフタイトル",
+                text: "グラフタイトルw",
               },
             },
           }}
           data={{
             labels: range(
               options[config.showGraph].min,
-              options[config.showGraph].max,
+              graphMax,
               options[config.showGraph].steps
             ).map(
               (v) =>
@@ -140,7 +156,7 @@ function App() {
               pointStyle: false,
             })),
           }}
-        />
+        ></Line>
       )}
       {Object.entries(platforms).map((v) => (
         <p>
