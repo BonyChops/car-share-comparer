@@ -62,6 +62,9 @@ function App() {
   return (
     <div className="App">
       <h1>カーシェアプラットフォームを比較</h1>
+      <p>
+        当サイトのデータはすべて開発者が手打ちしたものであり、開発者はここで比較した際の損害の一切の責任を追わないものとします。
+      </p>
       <table>
         {Object.entries(options).map((v) => (
           <tr>
